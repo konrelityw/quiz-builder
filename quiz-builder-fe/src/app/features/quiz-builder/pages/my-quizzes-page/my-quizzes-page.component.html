@@ -1,0 +1,29 @@
+<section class="my-quizzes-page">
+  <div class="actions">
+    <h2>My Quizzes</h2>
+  </div>
+
+  <p class="status">{{ status }}</p>
+
+  @if (quizzes.length) {
+    <ul class="quiz-list">
+      @for (quiz of quizzes; track quiz._id) {
+        <li class="quiz-item">
+          <div>
+            <strong>{{ quiz.name }}</strong>
+            <p>Questions: {{ quiz.questions.length }}</p>
+          </div>
+
+          <div class="quiz-actions">
+            <button type="button" (click)="updateQuiz(quiz._id)">Update</button>
+            <a class="action-button-link" [routerLink]="['/quiz-builder', quiz._id, 'analytics']">
+              Analytics
+            </a>
+            <a class="action-button-link" [routerLink]="['/quiz', quiz._id]">Open quiz</a>
+            <button type="button" (click)="deleteQuiz(quiz._id)">Delete</button>
+          </div>
+        </li>
+      }
+    </ul>
+  }
+</section>

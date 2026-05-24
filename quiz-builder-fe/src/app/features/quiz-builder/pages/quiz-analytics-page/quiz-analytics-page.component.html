@@ -1,0 +1,51 @@
+<section class="quiz-analytics-page">
+  <div class="actions">
+    <a routerLink="/quiz-builder/my">Back to my quizzes</a>
+  </div>
+
+  <p class="status">{{ status }}</p>
+
+  @if (analytics) {
+    <div class="email-actions">
+      <button type="button" (click)="sendAnalyticsEmail(quizId)">Email this report</button>
+      <span class="email-status">{{ emailStatus }}</span>
+    </div>
+
+    <h2>{{ analytics.quizName }} analytics</h2>
+    <p>Total recommendations generated: {{ analytics.totalSubmissions }}</p>
+    <h3>Result URLs</h3>
+    <section class="analytics-section">
+      @if (analytics.resultStats.length) {
+        <ul class="analytics-list">
+          @for (item of analytics.resultStats; track item.resultUrl) {
+            <li>
+              <a [href]="item.resultUrl" target="_blank" rel="noopener noreferrer">{{ item.resultUrl }}</a>
+              <span>{{ item.count }}</span>
+            </li>
+          }
+        </ul>
+      } @else {
+        <p>No result data yet</p>
+      }
+    </section>
+
+    <h3>Answers distribution</h3>
+    @if (groupedAnswerStats.length) {
+      @for (questionStats of groupedAnswerStats; track questionStats.questionDisplayId) {
+        <section class="analytics-section">
+          <h4>{{ questionStats.questionTitle }}</h4>
+          <ul class="analytics-list">
+            @for (answer of questionStats.answers; track answer.questionDisplayId + '-' + answer.answerDisplayId) {
+              <li>
+                <span>{{ answer.answerTitle }}</span>
+                <span>{{ answer.count }}</span>
+              </li>
+            }
+          </ul>
+        </section>
+      }
+    } @else {
+      <p>No answers data yet</p>
+    }
+  }
+</section>

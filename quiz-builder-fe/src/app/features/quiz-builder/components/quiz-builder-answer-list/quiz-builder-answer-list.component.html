@@ -1,0 +1,9 @@
+<div class="quiz-builder-answer-list">
+  @for (answer of answers(); track answer.displayId) {
+    <quiz-builder-answer-form
+      [questionDisplayId]="questionDisplayId()"
+      [answerDisplayId]="answer.displayId"
+    />
+  }
+  <quiz-builder-add-answer-button [questionDisplayId]="questionDisplayId()" />
+</div>

@@ -1,0 +1,28 @@
+.auth-page {
+  max-width: 420px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.request-status {
+  color: #475569;
+}
+
+.success-message {
+  color: #1b5e20;
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+.error {
+  color: #b71c1c;
+}
+
+.auth-switch {
+  margin-top: 1rem;
+}
+
+.primary {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+}

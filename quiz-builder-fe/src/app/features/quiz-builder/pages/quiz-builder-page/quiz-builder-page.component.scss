@@ -1,0 +1,60 @@
+.quiz-builder-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.2rem;
+  border: 1px solid #dbe2ee;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+}
+
+.status {
+  color: #475569;
+  min-height: 1.2rem;
+}
+
+.primary-action {
+  align-self: flex-start;
+}
+
+.combinations-matrix {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  background: #f8fafc;
+}
+
+.matrix-header,
+.matrix-row {
+  display: grid;
+  grid-template-columns: minmax(280px, 420px) 1fr;
+  gap: 0.75rem;
+  align-items: start;
+}
+
+.matrix-header {
+  color: #334155;
+}
+
+.combination-values {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.combination-values span {
+  border: 1px solid #dbe2ee;
+  border-radius: 12px;
+  padding: 0.2rem 0.6rem;
+  font-size: 0.9rem;
+  background: #fff;
+}
+
+.quiz-link {
+  color: #334155;
+}

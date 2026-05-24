@@ -1,0 +1,34 @@
+<div class="quiz-builder-question-list">
+  <p class="list-hint">
+    Use ↑ / ↓ to change the order visitors see in the public quiz. Save the quiz again afterward to rebuild the
+    combinations matrix and result links if needed.
+  </p>
+  @for (question of questions(); track question.displayId; let qIndex = $index) {
+    <div class="question-row">
+      <div class="question-row__reorder" aria-label="Question order">
+        <button
+          type="button"
+          class="reorder-btn"
+          (click)="moveQuestionUp(qIndex)"
+          [disabled]="qIndex === 0"
+          title="Move up"
+        >
+          ↑
+        </button>
+        <button
+          type="button"
+          class="reorder-btn"
+          (click)="moveQuestionDown(qIndex)"
+          [disabled]="qIndex === questions().length - 1"
+          title="Move down"
+        >
+          ↓
+        </button>
+      </div>
+      <div class="question-row__form">
+        <quiz-builder-question-form [displayId]="question.displayId" />
+      </div>
+    </div>
+  }
+  <quiz-builder-add-question-button />
+</div>

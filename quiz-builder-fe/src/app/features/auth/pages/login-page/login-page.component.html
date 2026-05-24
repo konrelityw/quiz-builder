@@ -1,0 +1,32 @@
+<section class="auth-page">
+  <h2>Welcome back</h2>
+  <p class="subtitle">Sign in to manage your quiz funnels</p>
+
+  @if (registrationNotice) {
+    <p class="registration-notice">{{ registrationNotice }}</p>
+  }
+
+  <form [formGroup]="form" class="auth-form">
+    <label for="login">Username or email</label>
+    <input id="login" type="text" autocomplete="username" formControlName="login" />
+
+    <label for="password">Password</label>
+    <input id="password" type="password" autocomplete="current-password" formControlName="password" />
+
+    <button type="button" (click)="submit()">Login</button>
+  </form>
+
+  <p class="auth-links">
+    <a routerLink="/forgot-password">Forgot password?</a>
+    ·
+    <a routerLink="/resend-verification">Resend verification email</a>
+  </p>
+
+  <p class="auth-switch">
+    Don't have an account?
+    <a routerLink="/register">Register</a>
+  </p>
+
+  <p class="error">{{ errorMessage }}</p>
+  <p class="request-status">{{ requestStatus }}</p>
+</section>

@@ -1,0 +1,53 @@
+<form [formGroup]="quizForm" class="quiz-builder-form">
+  <h2>Quiz Builder</h2>
+
+  <label for="quiz-name">Quiz name</label>
+  <input id="quiz-name" type="text" formControlName="quizName" [formGroup]="quizForm" />
+
+  <quiz-builder-question-list />
+
+  <button class="primary-action" type="button" (click)="saveQuizStructure()">Save quiz structure</button>
+  <p class="status">{{ saveStatus }}</p>
+  @if (structureStatus) {
+    <p class="status">{{ structureStatus }}</p>
+  }
+
+  @if (hasCombinations) {
+    <section class="combinations-matrix">
+      <h3>Combinations matrix</h3>
+
+      <div class="matrix-header">
+        <strong>Result URL</strong>
+        <strong>Answers combination</strong>
+      </div>
+
+      @for (combination of combinations; track combination.key) {
+        <div class="matrix-row">
+          <input
+            type="text"
+            [value]="combination.resultUrl ?? ''"
+            (input)="updateCombinationUrl(combination.key, $any($event.target).value)"
+            placeholder="https://your-site.com/product-or-service"
+          />
+
+          <div class="combination-values">
+            @for (answer of combination.answers; track answer.questionDisplayId + '-' + answer.answerDisplayId + '-' + $index) {
+              <span>{{ answer.questionTitle }}: {{ answer.answerTitle }}</span>
+            }
+          </div>
+        </div>
+      }
+
+      <button class="primary-action" type="button" (click)="saveCombinationResults()">Save result links</button>
+    </section>
+
+    @if (canShowQuizLink && quizStoreService.quiz()._id) {
+      <p class="quiz-link">
+        Quiz link:
+        <a [href]="getPublicQuizLink()" target="_blank" rel="noopener noreferrer">
+          {{ getPublicQuizLink() }}
+        </a>
+      </p>
+    }
+  }
+</form>

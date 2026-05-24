@@ -1,0 +1,18 @@
+<section class="auth-page">
+  <h2>Resend verification email</h2>
+  <p class="subtitle">We will send a new confirmation link if the account exists and is not verified yet.</p>
+
+  <form [formGroup]="form" class="auth-form">
+    <label for="email">Email</label>
+    <input id="email" type="email" autocomplete="email" formControlName="email" />
+
+    <button type="button" (click)="submit()">Send link</button>
+  </form>
+
+  <p class="auth-switch">
+    <a routerLink="/login">Back to login</a>
+  </p>
+
+  <p class="error">{{ errorMessage }}</p>
+  <p class="request-status">{{ status }}</p>
+</section>

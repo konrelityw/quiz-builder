@@ -1,0 +1,20 @@
+<section class="auth-page">
+  <h2>Email verification</h2>
+
+  @if (loading) {
+    <p class="request-status">Verifying your email...</p>
+  } @else if (verified) {
+    <p class="success-message">Your email has been successfully verified.</p>
+    <p class="request-status">You can sign in to your account now.</p>
+    <button type="button" class="primary" (click)="goToLogin()">Go to login</button>
+  } @else if (errorMessage) {
+    <p class="error">{{ errorMessage }}</p>
+    <p class="auth-switch">
+      Need a new link?
+      <a routerLink="/resend-verification">Resend verification email</a>
+    </p>
+    <p class="auth-switch">
+      <a routerLink="/login">Back to login</a>
+    </p>
+  }
+</section>

@@ -1,0 +1,15 @@
+<form [formGroup]="answerForm" class="quiz-builder-answer-form">
+  <div class="form-field">
+    <label for="title">Answer title</label>
+    <input id="title" type="text" formControlName="title" placeholder="Enter answer title" />
+
+    @if (answerForm.controls.title.touched && answerForm.controls.title.invalid) {
+      <small class="error"> Title is required </small>
+    }
+  </div>
+
+  <div class="form-field">
+    <label for="subtitle">Subtitle (optional)</label>
+    <input id="subtitle" type="text" formControlName="subtitle" placeholder="Optional subtitle" />
+  </div>
+</form>

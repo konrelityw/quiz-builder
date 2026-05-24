@@ -1,0 +1,22 @@
+<div class="app-shell">
+  <nav class="top-nav">
+    <a class="brand" routerLink="/quiz-builder">QuizFlow</a>
+    <div class="top-nav-links">
+      <a routerLink="/quiz-builder">Builder</a>
+      <a routerLink="/quiz-builder/my">My Quizzes</a>
+      @if (authApiService.isAuthenticated()) {
+        <a routerLink="/quiz-builder/account">My account</a>
+      }
+      @if (!authApiService.isAuthenticated()) {
+        <a routerLink="/login">Login</a>
+      }
+    </div>
+    @if (authApiService.isAuthenticated()) {
+      <button type="button" (click)="logout()">Logout</button>
+    }
+  </nav>
+
+  <main class="page-container">
+    <router-outlet />
+  </main>
+</div>
