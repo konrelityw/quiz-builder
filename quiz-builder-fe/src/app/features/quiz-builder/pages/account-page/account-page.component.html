@@ -1,102 +1,150 @@
-<section class="account-page">
-  <div class="actions">
-    <a routerLink="/quiz-builder/my">Back to my quizzes</a>
-  </div>
+<section class="page-card page-card--medium account-page">
+  <a class="back-link" routerLink="/quiz-builder/my">← Back to my quizzes</a>
 
-  <h2>My account</h2>
-
-  <p class="status">{{ profileStatus }}</p>
-  <p class="error">{{ errorMessage }}</p>
-  <p class="status">{{ emailStatus }}</p>
-  <p class="status">{{ digestStatus }}</p>
-
-  <section class="panel">
-    <h3>Profile</h3>
-    <div class="readonly-grid">
-      <label>Username</label>
-      <span>{{ username }}</span>
-
-      <label>Email</label>
-      <div class="stack-cell">
-        @if (!showEmailForm) {
-          <div class="row-with-action">
-            <span class="value">{{ email || 'None' }}</span>
-            <button type="button" class="linkish" (click)="openEmailForm()">
-              {{ email ? 'Change' : 'Add' }}
-            </button>
-          </div>
-        } @else {
-          <form [formGroup]="emailForm" class="inline-form">
-            <label class="sr-only" for="new-email">New email</label>
-            <input id="new-email" type="email" autocomplete="email" formControlName="newEmail" placeholder="New email" />
-
-            <label class="sr-only" for="email-pw">Current password</label>
-            <input
-              id="email-pw"
-              type="password"
-              autocomplete="current-password"
-              formControlName="currentPassword"
-              placeholder="Current password"
-            />
-
-            <div class="form-actions">
-              <button type="button" (click)="saveEmail()">Save email</button>
-              <button type="button" class="secondary" (click)="cancelEmailForm()">Cancel</button>
-            </div>
-          </form>
-        }
-      </div>
-
-      <label>Email verified</label>
-      <span>{{ emailVerifiedLabel }}</span>
-
-      <label>Password</label>
-      <div class="stack-cell">
-        @if (!showPasswordForm) {
-          <div class="row-with-action">
-            <span class="value masked">*****</span>
-            <button type="button" class="linkish" (click)="openPasswordForm()">Change</button>
-          </div>
-        } @else {
-          <form [formGroup]="passwordForm" class="password-form">
-            <label class="sr-only" for="current">Current password</label>
-            <input id="current" type="password" autocomplete="current-password" formControlName="currentPassword" placeholder="Current password" />
-
-            <label class="sr-only" for="new">New password</label>
-            <input id="new" type="password" autocomplete="new-password" formControlName="newPassword" placeholder="New password" />
-
-            <label class="sr-only" for="confirm">Confirm new password</label>
-            <input id="confirm" type="password" autocomplete="new-password" formControlName="confirmPassword" placeholder="Confirm new password" />
-
-            <div class="form-actions">
-              <button type="button" (click)="changePassword()">Update password</button>
-              <button type="button" class="secondary" (click)="cancelPasswordForm()">Cancel</button>
-            </div>
-          </form>
-          <p class="password-status">{{ passwordStatus }}</p>
-        }
-      </div>
+  <header class="profile-header">
+    <div class="profile-avatar" aria-hidden="true">{{ (username || '?').charAt(0).toUpperCase() }}</div>
+    <div class="profile-header__text">
+      <h2>My account</h2>
+      <p class="page-subtitle">Profile, security, and email report preferences</p>
     </div>
-  </section>
+  </header>
 
-  <section class="panel">
-    <h3>Email analytics reports</h3>
-    <p class="hint">
-      Choose how often QuizBuilder emails you a summary of analytics for all your quizzes. Your email must be
-      verified. The server job must run often enough for your choice (e.g. STATS_CRON every hour for hourly digests).
-      Each digest includes <strong>all-time</strong> totals per quiz and counts <strong>since your previous digest
-      email</strong> (UTC window shown in the message).
-    </p>
-    <form [formGroup]="digestForm" class="digest-form">
-      <label for="digest-frequency">Frequency</label>
-      <select id="digest-frequency" formControlName="frequency">
-        <option value="off">Off</option>
-        <option value="hourly">Hourly (at most once per hour when the job runs)</option>
-        <option value="daily">Daily (at most once per UTC day when the job runs)</option>
-        <option value="weekly">Weekly (7 days after the last email)</option>
-        <option value="monthly">Monthly (30 days after the last email)</option>
-      </select>
-      <button type="button" (click)="saveDigestPreference()">Save preference</button>
-    </form>
-  </section>
+  @if (profileStatus || errorMessage || emailStatus || digestStatus) {
+    <div class="status-messages">
+      @if (profileStatus) {
+        <p class="status">{{ profileStatus }}</p>
+      }
+      @if (errorMessage) {
+        <p class="error">{{ errorMessage }}</p>
+      }
+      @if (emailStatus) {
+        <p class="status">{{ emailStatus }}</p>
+      }
+      @if (digestStatus) {
+        <p class="status">{{ digestStatus }}</p>
+      }
+    </div>
+  }
+
+  <div class="settings-grid">
+    <section class="settings-card">
+      <div class="settings-card__head">
+        <span class="settings-card__icon" aria-hidden="true">👤</span>
+        <h3>Profile & security</h3>
+      </div>
+
+      <div class="settings-card__body">
+        <div class="settings-row">
+          <span class="settings-row__label">Username</span>
+          <div class="settings-row__value">
+            <span>{{ username }}</span>
+          </div>
+        </div>
+
+        <div class="settings-row">
+          <span class="settings-row__label">Email</span>
+          <div class="settings-row__value">
+            @if (!showEmailForm) {
+              <div class="settings-row__actions row-with-action">
+                <span>{{ email || 'Not set' }}</span>
+                <button type="button" class="btn-ghost" (click)="openEmailForm()">
+                  {{ email ? 'Change' : 'Add email' }}
+                </button>
+              </div>
+            } @else {
+              <form [formGroup]="emailForm" class="form-stack">
+                <label class="sr-only" for="new-email">New email</label>
+                <input id="new-email" type="email" autocomplete="email" formControlName="newEmail" placeholder="New email" />
+
+                <label class="sr-only" for="email-pw">Current password</label>
+                <input
+                  id="email-pw"
+                  type="password"
+                  autocomplete="current-password"
+                  formControlName="currentPassword"
+                  placeholder="Current password"
+                />
+
+                <div class="form-actions">
+                  <button type="button" (click)="saveEmail()">Save email</button>
+                  <button type="button" class="btn-secondary" (click)="cancelEmailForm()">Cancel</button>
+                </div>
+              </form>
+            }
+          </div>
+        </div>
+
+        <div class="settings-row">
+          <span class="settings-row__label">Verification</span>
+          <div class="settings-row__value">
+            <span
+              class="badge"
+              [class.badge--success]="emailVerifiedLabel === 'Yes'"
+              [class.badge--muted]="emailVerifiedLabel !== 'Yes'"
+            >
+              {{ emailVerifiedLabel === 'Yes' ? 'Verified' : 'Not verified' }}
+            </span>
+          </div>
+        </div>
+
+        <div class="settings-row">
+          <span class="settings-row__label">Password</span>
+          <div class="settings-row__value">
+            @if (!showPasswordForm) {
+              <div class="settings-row__actions row-with-action">
+                <span class="masked">••••••••</span>
+                <button type="button" class="btn-ghost" (click)="openPasswordForm()">Change password</button>
+              </div>
+            } @else {
+              <form [formGroup]="passwordForm" class="form-stack">
+                <label class="sr-only" for="current">Current password</label>
+                <input id="current" type="password" autocomplete="current-password" formControlName="currentPassword" placeholder="Current password" />
+
+                <label class="sr-only" for="new">New password</label>
+                <input id="new" type="password" autocomplete="new-password" formControlName="newPassword" placeholder="New password" />
+
+                <label class="sr-only" for="confirm">Confirm new password</label>
+                <input id="confirm" type="password" autocomplete="new-password" formControlName="confirmPassword" placeholder="Confirm new password" />
+
+                <div class="form-actions">
+                  <button type="button" (click)="changePassword()">Update password</button>
+                  <button type="button" class="btn-secondary" (click)="cancelPasswordForm()">Cancel</button>
+                </div>
+              </form>
+              @if (passwordStatus) {
+                <p class="status">{{ passwordStatus }}</p>
+              }
+            }
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="settings-card">
+      <div class="settings-card__head">
+        <span class="settings-card__icon" aria-hidden="true">📊</span>
+        <h3>Email analytics reports</h3>
+      </div>
+
+      <p class="hint">
+        Choose how often QuizBuilder emails you a summary for all your quizzes. Your email must be verified. The
+        server job must run often enough for your choice (e.g. STATS_CRON hourly for hourly digests). Each digest
+        includes <strong>all-time</strong> totals and counts <strong>since your previous email</strong> (UTC).
+      </p>
+
+      <form [formGroup]="digestForm" class="form-stack digest-form">
+        <div class="form-field">
+          <label for="digest-frequency">Report frequency</label>
+          <select id="digest-frequency" formControlName="frequency">
+            <option value="off">Off</option>
+            <option value="hourly">Hourly</option>
+            <option value="daily">Daily (UTC)</option>
+            <option value="weekly">Weekly</option>
+            <option value="monthly">Monthly</option>
+          </select>
+        </div>
+        <button type="button" (click)="saveDigestPreference()">Save preference</button>
+      </form>
+    </section>
+  </div>
 </section>

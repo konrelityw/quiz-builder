@@ -42,8 +42,7 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
       );
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { password: userPassword, ...secureUser } = user.toObject();
+    const { password: _userPassword, ...secureUser } = user.toObject();
     return secureUser;
   }
 }

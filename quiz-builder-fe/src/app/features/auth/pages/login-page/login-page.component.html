@@ -1,9 +1,10 @@
 <section class="auth-page">
+  <span class="auth-page__badge">QuizBuilder</span>
   <h2>Welcome back</h2>
   <p class="subtitle">Sign in to manage your quiz funnels</p>
 
   @if (registrationNotice) {
-    <p class="registration-notice">{{ registrationNotice }}</p>
+    <p class="alert alert--success">{{ registrationNotice }}</p>
   }
 
   <form [formGroup]="form" class="auth-form">

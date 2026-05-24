@@ -1,35 +1,51 @@
-<section class="quiz-analytics-page">
-  <div class="actions">
-    <a routerLink="/quiz-builder/my">Back to my quizzes</a>
-  </div>
+<section class="page-card quiz-analytics-page">
+  <a class="back-link" routerLink="/quiz-builder/my">← Back to my quizzes</a>
 
   <p class="status">{{ status }}</p>
 
   @if (analytics) {
-    <div class="email-actions">
-      <button type="button" (click)="sendAnalyticsEmail(quizId)">Email this report</button>
-      <span class="email-status">{{ emailStatus }}</span>
+    <header class="page-hero page-hero--row">
+      <div>
+        <h2>{{ analytics.quizName }}</h2>
+        <p class="page-subtitle">Performance overview</p>
+      </div>
+      <div class="email-actions">
+        <button type="button" class="btn-secondary" (click)="sendAnalyticsEmail(quizId)">Email report</button>
+      </div>
+    </header>
+
+    @if (emailStatus) {
+      <p class="status">{{ emailStatus }}</p>
+    }
+
+    <div class="stat-row">
+      <div class="stat-pill">
+        <div class="stat-pill__value">{{ analytics.totalSubmissions }}</div>
+        <div class="stat-pill__label">Recommendations</div>
+      </div>
+      <div class="stat-pill">
+        <div class="stat-pill__value">{{ analytics.resultStats.length }}</div>
+        <div class="stat-pill__label">Unique results</div>
+      </div>
     </div>
 
-    <h2>{{ analytics.quizName }} analytics</h2>
-    <p>Total recommendations generated: {{ analytics.totalSubmissions }}</p>
-    <h3>Result URLs</h3>
+    <h3 class="section-title">Result URLs</h3>
     <section class="analytics-section">
       @if (analytics.resultStats.length) {
         <ul class="analytics-list">
           @for (item of analytics.resultStats; track item.resultUrl) {
             <li>
               <a [href]="item.resultUrl" target="_blank" rel="noopener noreferrer">{{ item.resultUrl }}</a>
-              <span>{{ item.count }}</span>
+              <span class="tag">{{ item.count }}</span>
             </li>
           }
         </ul>
       } @else {
-        <p>No result data yet</p>
+        <p class="page-subtitle">No result data yet</p>
       }
     </section>
 
-    <h3>Answers distribution</h3>
+    <h3 class="section-title">Answers distribution</h3>
     @if (groupedAnswerStats.length) {
       @for (questionStats of groupedAnswerStats; track questionStats.questionDisplayId) {
         <section class="analytics-section">
@@ -38,14 +54,14 @@
             @for (answer of questionStats.answers; track answer.questionDisplayId + '-' + answer.answerDisplayId) {
               <li>
                 <span>{{ answer.answerTitle }}</span>
-                <span>{{ answer.count }}</span>
+                <span class="tag">{{ answer.count }}</span>
               </li>
             }
           </ul>
         </section>
       }
     } @else {
-      <p>No answers data yet</p>
+      <p class="page-subtitle">No answers data yet</p>
     }
   }
 </section>

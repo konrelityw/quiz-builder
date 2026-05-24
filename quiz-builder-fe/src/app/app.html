@@ -1,19 +1,23 @@
 <div class="app-shell">
-  <nav class="top-nav">
-    <a class="brand" routerLink="/quiz-builder">QuizFlow</a>
-    <div class="top-nav-links">
-      <a routerLink="/quiz-builder">Builder</a>
-      <a routerLink="/quiz-builder/my">My Quizzes</a>
+  <nav class="top-nav" aria-label="Main navigation">
+    <a class="brand" routerLink="/quiz-builder">QuizBuilder</a>
+
+    <div class="top-nav__end">
+      <div class="top-nav-links">
+        <a routerLink="/quiz-builder">Builder</a>
+        <a routerLink="/quiz-builder/my">My Quizzes</a>
+        @if (authApiService.isAuthenticated()) {
+          <a routerLink="/quiz-builder/account">My account</a>
+        }
+        @if (!authApiService.isAuthenticated()) {
+          <a routerLink="/login">Login</a>
+        }
+      </div>
+
       @if (authApiService.isAuthenticated()) {
-        <a routerLink="/quiz-builder/account">My account</a>
-      }
-      @if (!authApiService.isAuthenticated()) {
-        <a routerLink="/login">Login</a>
+        <button type="button" class="btn-secondary btn-sm" (click)="logout()">Logout</button>
       }
     </div>
-    @if (authApiService.isAuthenticated()) {
-      <button type="button" (click)="logout()">Logout</button>
-    }
   </nav>
 
   <main class="page-container">

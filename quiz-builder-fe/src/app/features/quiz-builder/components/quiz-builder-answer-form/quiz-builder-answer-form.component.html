@@ -1,15 +1,25 @@
-<form [formGroup]="answerForm" class="quiz-builder-answer-form">
+<form [formGroup]="answerForm" class="nested-card nested-card--answer quiz-builder-answer-form">
   <div class="form-field">
-    <label for="title">Answer title</label>
-    <input id="title" type="text" formControlName="title" placeholder="Enter answer title" />
+    <label [attr.for]="'answer-title-' + questionDisplayId() + '-' + answerDisplayId()">Answer title</label>
+    <input
+      [id]="'answer-title-' + questionDisplayId() + '-' + answerDisplayId()"
+      type="text"
+      formControlName="title"
+      placeholder="Enter answer title"
+    />
 
     @if (answerForm.controls.title.touched && answerForm.controls.title.invalid) {
-      <small class="error"> Title is required </small>
+      <small class="error">Title is required</small>
     }
   </div>
 
   <div class="form-field">
-    <label for="subtitle">Subtitle (optional)</label>
-    <input id="subtitle" type="text" formControlName="subtitle" placeholder="Optional subtitle" />
+    <label [attr.for]="'answer-subtitle-' + questionDisplayId() + '-' + answerDisplayId()">Subtitle (optional)</label>
+    <input
+      [id]="'answer-subtitle-' + questionDisplayId() + '-' + answerDisplayId()"
+      type="text"
+      formControlName="subtitle"
+      placeholder="Optional subtitle"
+    />
   </div>
 </form>

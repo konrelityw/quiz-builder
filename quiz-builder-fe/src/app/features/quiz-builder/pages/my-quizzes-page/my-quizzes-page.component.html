@@ -1,26 +1,27 @@
-<section class="my-quizzes-page">
-  <div class="actions">
-    <h2>My Quizzes</h2>
-  </div>
+<section class="page-card my-quizzes-page">
+  <header class="page-hero">
+    <div>
+      <h2>My Quizzes</h2>
+      <p class="page-subtitle">Manage recommendation funnels and track performance</p>
+    </div>
+  </header>
 
   <p class="status">{{ status }}</p>
 
   @if (quizzes.length) {
-    <ul class="quiz-list">
+    <ul class="list-plain">
       @for (quiz of quizzes; track quiz._id) {
-        <li class="quiz-item">
-          <div>
+        <li class="quiz-card">
+          <div class="quiz-card__meta">
             <strong>{{ quiz.name }}</strong>
-            <p>Questions: {{ quiz.questions.length }}</p>
+            <p>{{ quiz.questions.length }} questions</p>
           </div>
 
-          <div class="quiz-actions">
-            <button type="button" (click)="updateQuiz(quiz._id)">Update</button>
-            <a class="action-button-link" [routerLink]="['/quiz-builder', quiz._id, 'analytics']">
-              Analytics
-            </a>
-            <a class="action-button-link" [routerLink]="['/quiz', quiz._id]">Open quiz</a>
-            <button type="button" (click)="deleteQuiz(quiz._id)">Delete</button>
+          <div class="quiz-card__actions">
+            <button type="button" (click)="updateQuiz(quiz._id)">Edit</button>
+            <a class="action-link" [routerLink]="['/quiz-builder', quiz._id, 'analytics']">Analytics</a>
+            <a class="action-link" [routerLink]="['/quiz', quiz._id]">Preview</a>
+            <button type="button" class="btn-danger" (click)="deleteQuiz(quiz._id)">Delete</button>
           </div>
         </li>
       }
