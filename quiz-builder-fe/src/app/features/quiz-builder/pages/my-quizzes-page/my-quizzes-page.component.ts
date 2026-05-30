@@ -1,7 +1,7 @@
-import { ChangeDetectorRef, Component, inject } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
-import { QuizApiService } from '../../../../services/quiz-api.service';
-import { Quiz } from '../../../../shared/entities/Quiz.entity';
+import {ChangeDetectorRef, Component, inject} from '@angular/core';
+import {Router, RouterLink} from '@angular/router';
+import {QuizApiService} from '../../../../services/quiz-api.service';
+import {Quiz} from '../../../../shared/entities/Quiz.entity';
 
 @Component({
   selector: 'my-quizzes-page',

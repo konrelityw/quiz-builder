@@ -1,5 +1,5 @@
-import { Component, inject, input } from '@angular/core';
-import { QuizStoreService } from '../../../../services/quiz-store.service';
+import {Component, inject, input} from '@angular/core';
+import {QuizStoreService} from '../../../../services/quiz-store.service';
 
 @Component({
   selector: 'quiz-builder-add-answer-button',
@@ -11,6 +11,6 @@ export class QuizBuilderAddAnswerButtonComponent {
   private readonly quizStore = inject(QuizStoreService);
 
   onAdd() {
-    this.quizStore.addAnswer(this.questionDisplayId(), { title: '' });
+    this.quizStore.addAnswer(this.questionDisplayId(), {title: ''});
   }
 }

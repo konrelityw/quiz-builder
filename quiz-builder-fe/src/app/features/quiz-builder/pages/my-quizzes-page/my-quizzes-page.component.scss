@@ -1,0 +1,111 @@
+.action-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  padding: 0.65rem 1rem;
+  border-radius: var(--radius-sm);
+  background: var(--gradient-primary);
+  color: var(--color-text-inverse);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  text-decoration: none;
+  white-space: normal;
+  text-align: center;
+
+  &:hover {
+    filter: brightness(1.05);
+    box-shadow: var(--shadow-glow);
+    text-decoration: none;
+  }
+
+  @media (min-width: 769px) {
+    font-size: var(--font-size-lg);
+  }
+}
+
+.list-plain {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+.quiz-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+  min-width: 0;
+  max-width: 100%;
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.2s ease,
+  border-color 0.2s ease;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--gradient-primary);
+  }
+
+  &:hover {
+    border-color: var(--color-primary-border);
+    box-shadow: var(--shadow-md);
+  }
+}
+
+.quiz-card__meta {
+  padding-left: var(--space-2);
+  min-width: 0;
+
+  strong {
+    display: block;
+    font-size: var(--font-size-lg);
+    overflow-wrap: anywhere;
+
+    @media (min-width: 769px) {
+      font-size: var(--font-size-xl);
+    }
+  }
+
+  p {
+    margin-top: var(--space-1);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+
+    @media (min-width: 769px) {
+      font-size: var(--font-size-lg);
+    }
+  }
+}
+
+.quiz-card__actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-2);
+  width: 100%;
+  min-width: 0;
+
+  > * {
+    min-width: 0;
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .quiz-card__actions {
+    grid-template-columns: 1fr;
+  }
+}

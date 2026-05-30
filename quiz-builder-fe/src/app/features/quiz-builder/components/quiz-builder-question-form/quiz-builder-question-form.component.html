@@ -12,16 +12,14 @@
       Used in the combinations matrix and API. Default is auto-assigned; change only if you need a fixed key. Must be
       unique among questions.
     </small>
-    @if (
-      questionForm.controls.questionDisplayId.touched && questionForm.controls.questionDisplayId.invalid
-    ) {
+    @if (questionForm.controls.questionDisplayId.touched && questionForm.controls.questionDisplayId.invalid) {
       <small class="error">Enter a non-negative integer</small>
     }
   </div>
 
   <div class="form-field">
     <label [attr.for]="'title-' + displayId()">Question title</label>
-    <input [id]="'title-' + displayId()" type="text" formControlName="title" placeholder="Enter question title" />
+    <input [id]="'title-' + displayId()" type="text" formControlName="title" placeholder="Enter question title"/>
 
     @if (questionForm.controls.title.touched && questionForm.controls.title.invalid) {
       <small class="error">Title is required</small>
@@ -30,7 +28,7 @@
 
   <div class="form-field">
     <label [attr.for]="'subtitle-' + displayId()">Subtitle (optional)</label>
-    <input [id]="'subtitle-' + displayId()" type="text" formControlName="subtitle" placeholder="Optional subtitle" />
+    <input [id]="'subtitle-' + displayId()" type="text" formControlName="subtitle" placeholder="Optional subtitle"/>
   </div>
 
   <div class="form-field">
@@ -43,11 +41,12 @@
 
   <div class="form-field form-field--checkbox">
     <label>
-      <input type="checkbox" formControlName="affectsMatching" />
+      <input type="checkbox" formControlName="affectsMatching"/>
       Include in recommendation matching (combinations matrix)
     </label>
-    <small class="hint">Turn off for extra questions that should not change the suggested product or service URL.</small>
+    <small class="hint">Turn off for extra questions that should not change the suggested product or service
+      URL.</small>
   </div>
 
-  <quiz-builder-answer-list [questionDisplayId]="displayId()" />
+  <quiz-builder-answer-list [questionDisplayId]="displayId()"/>
 </form>

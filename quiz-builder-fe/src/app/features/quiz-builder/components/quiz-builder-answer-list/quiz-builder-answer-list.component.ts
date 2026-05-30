@@ -1,7 +1,9 @@
-import { Component, computed, inject, input } from '@angular/core';
-import { QuizBuilderAddAnswerButtonComponent } from '../quiz-builder-add-answer-button/quiz-builder-add-answer-button.component';
-import { QuizStoreService } from '../../../../services/quiz-store.service';
-import { QuizBuilderAnswerForm } from '../quiz-builder-answer-form/quiz-builder-answer-form.component';
+import {Component, computed, inject, input} from '@angular/core';
+import {
+  QuizBuilderAddAnswerButtonComponent
+} from '../quiz-builder-add-answer-button/quiz-builder-add-answer-button.component';
+import {QuizStoreService} from '../../../../services/quiz-store.service';
+import {QuizBuilderAnswerForm} from '../quiz-builder-answer-form/quiz-builder-answer-form.component';
 
 @Component({
   selector: 'quiz-builder-answer-list',
@@ -14,4 +16,8 @@ export class QuizBuilderAnswerListComponent {
   private quizStore = inject(QuizStoreService);
 
   answers = computed(() => this.quizStore.getAnswers(this.questionDisplayId()));
+
+  removeAnswer(answerDisplayId: number) {
+    this.quizStore.removeAnswer(this.questionDisplayId(), answerDisplayId);
+  }
 }

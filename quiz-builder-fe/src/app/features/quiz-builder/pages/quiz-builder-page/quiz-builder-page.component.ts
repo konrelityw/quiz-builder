@@ -1,11 +1,13 @@
-import { ChangeDetectorRef, Component, effect, inject } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { QuizStoreService } from '../../../../services/quiz-store.service';
-import { QuizBuilderQuestionListComponent } from '../../components/quiz-builder-question-list/quiz-builder-question-list.component';
-import { QuizApiService } from '../../../../services/quiz-api.service';
-import { Quiz, QuizCombination } from '../../../../shared/entities/Quiz.entity';
+import {ChangeDetectorRef, Component, effect, inject} from '@angular/core';
+import {toSignal} from '@angular/core/rxjs-interop';
+import {FormBuilder, ReactiveFormsModule} from '@angular/forms';
+import {ActivatedRoute} from '@angular/router';
+import {QuizStoreService} from '../../../../services/quiz-store.service';
+import {
+  QuizBuilderQuestionListComponent
+} from '../../components/quiz-builder-question-list/quiz-builder-question-list.component';
+import {QuizApiService} from '../../../../services/quiz-api.service';
+import {Quiz, QuizCombination} from '../../../../shared/entities/Quiz.entity';
 
 @Component({
   selector: 'quiz-builder-page',
@@ -117,7 +119,7 @@ export class QuizBuilderPage {
 
       if (!quizId) {
         this.quizStoreService.resetQuiz();
-        this.quizForm.patchValue({ quizName: '' });
+        this.quizForm.patchValue({quizName: ''});
         this.setCombinations([]);
         this.canBuildMatrix = false;
         this.isBuildingMatrix = false;
@@ -133,7 +135,7 @@ export class QuizBuilderPage {
           this.canBuildMatrix = Boolean(quiz._id);
           this.isBuildingMatrix = false;
           this.canShowQuizLink = false;
-          this.quizForm.patchValue({ quizName: quiz.name });
+          this.quizForm.patchValue({quizName: quiz.name});
           this.saveStatus = '';
           this.cdr.detectChanges();
         },
@@ -183,7 +185,7 @@ export class QuizBuilderPage {
 
   updateCombinationUrl(key: string, value: string) {
     this.combinations = this.combinations.map((combination) =>
-      combination.key === key ? { ...combination, resultUrl: value } : combination,
+      combination.key === key ? {...combination, resultUrl: value} : combination,
     );
   }
 

@@ -1,7 +1,9 @@
-import { Component, computed, inject } from '@angular/core';
-import { QuizBuilderAddQuestionButtonComponent } from '../quiz-builder-add-question-button/quiz-builder-add-question-button.component';
-import { QuizStoreService } from '../../../../services/quiz-store.service';
-import { QuizBuilderQuestionForm } from '../quiz-builder-question-form/quiz-builder-question-form.component';
+import {Component, computed, inject} from '@angular/core';
+import {
+  QuizBuilderAddQuestionButtonComponent
+} from '../quiz-builder-add-question-button/quiz-builder-add-question-button.component';
+import {QuizStoreService} from '../../../../services/quiz-store.service';
+import {QuizBuilderQuestionForm} from '../quiz-builder-question-form/quiz-builder-question-form.component';
 
 @Component({
   selector: 'quiz-builder-question-list',
@@ -23,5 +25,9 @@ export class QuizBuilderQuestionListComponent {
     const list = this.questions();
     if (index < 0 || index >= list.length - 1) return;
     this.quizStore.moveQuestion(index, index + 1);
+  }
+
+  removeQuestion(displayId: number) {
+    this.quizStore.removeQuestion(displayId);
   }
 }

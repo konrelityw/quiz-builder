@@ -8,10 +8,11 @@
 
   <div class="form-field">
     <label for="quiz-name">Quiz name</label>
-    <input id="quiz-name" type="text" formControlName="quizName" [formGroup]="quizForm" placeholder="e.g. Product finder" />
+    <input id="quiz-name" type="text" formControlName="quizName" [formGroup]="quizForm"
+           placeholder="e.g. Product finder"/>
   </div>
 
-  <quiz-builder-question-list />
+  <quiz-builder-question-list/>
 
   <div class="toolbar-actions">
     <button type="button" (click)="saveQuizStructure()">Save quiz structure</button>

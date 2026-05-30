@@ -1,0 +1,41 @@
+<section class="product-page">
+  <div class="container product-grid">
+    <div class="product-image">
+      <img [src]="product.image" [alt]="product.title"/>
+    </div>
+
+    <div class="product-info">
+      <span class="category">{{ product.category }}</span>
+
+      <h1>{{ product.title }}</h1>
+
+      <div class="price">{{ product.price }}</div>
+
+      <p class="description">
+        {{ product.description }}
+      </p>
+
+      <div class="actions">
+        <button class="btn-primary">Замовити</button>
+
+        <a class="btn-primary" href="http://localhost:4200/quiz/6a184c5b0c21d969ab384752">
+          Пройти опитування
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container details">
+    <h2>Про продукт</h2>
+
+    <p>
+      {{ product.longDescription }}
+    </p>
+
+    <h2>Склад</h2>
+
+    <div class="ingredients">
+      {{ product.ingredients }}
+    </div>
+  </div>
+</section>

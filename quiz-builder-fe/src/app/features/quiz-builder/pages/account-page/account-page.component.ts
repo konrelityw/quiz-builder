@@ -1,7 +1,7 @@
-import { ChangeDetectorRef, Component, inject } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterLink } from '@angular/router';
-import { AuthApiService } from '../../../../services/auth-api.service';
+import {ChangeDetectorRef, Component, inject} from '@angular/core';
+import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
+import {RouterLink} from '@angular/router';
+import {AuthApiService} from '../../../../services/auth-api.service';
 
 export type DigestFrequency = 'off' | 'hourly' | 'daily' | 'weekly' | 'monthly';
 
@@ -41,7 +41,7 @@ export class AccountPageComponent {
   });
 
   digestForm = this.fb.nonNullable.group({
-    frequency: this.fb.nonNullable.control<DigestFrequency>('off', { validators: [Validators.required] }),
+    frequency: this.fb.nonNullable.control<DigestFrequency>('off', {validators: [Validators.required]}),
   });
 
   constructor() {
@@ -58,7 +58,7 @@ export class AccountPageComponent {
         this.email = user.email ?? '';
         this.emailVerifiedLabel = user.emailVerified ? 'Yes' : 'No';
         const freq = user.analyticsDigestFrequency ?? 'off';
-        this.digestForm.patchValue({ frequency: freq });
+        this.digestForm.patchValue({frequency: freq});
         this.profileStatus = '';
         this.cdr.detectChanges();
       },
@@ -77,7 +77,7 @@ export class AccountPageComponent {
     this.authApiService.updateAnalyticsDigest(frequency).subscribe({
       next: (response) => {
         this.digestStatus = response.message;
-        this.digestForm.patchValue({ frequency: response.analyticsDigestFrequency as DigestFrequency });
+        this.digestForm.patchValue({frequency: response.analyticsDigestFrequency as DigestFrequency});
         this.cdr.detectChanges();
       },
       error: (err: { error?: { message?: string } }) => {
@@ -166,7 +166,7 @@ export class AccountPageComponent {
       return;
     }
 
-    const { newEmail, currentPassword } = this.emailForm.getRawValue();
+    const {newEmail, currentPassword} = this.emailForm.getRawValue();
     this.errorMessage = '';
     this.emailStatus = 'Saving...';
 

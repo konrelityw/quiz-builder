@@ -1,0 +1,182 @@
+<header class="header">
+  <div class="container nav">
+    <div class="logo">Glowelle</div>
+
+    <nav class="nav-links">
+      <a routerLink="/quiz-builder/home">Головна</a>
+      <a href="#categories">Каталог</a>
+      <a href="#science">Наука</a>
+      <a href="#quiz">Опитування</a>
+    </nav>
+
+    <div class="nav-actions">
+      <a class="btn-outline" href="#">Увійти</a>
+      <a class="btn-primary" href="#categories">До покупок</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-text">
+      <span class="badge">Догляд, розроблений за участю дерматологів</span>
+
+      <h1>Сяйво починається з розуміння вашої шкіри</h1>
+
+      <p>
+        Мінімалістичний догляд з науково обґрунтованими формулами для балансу,
+        зволоження та природного сяйва. Створено для реальних потреб шкіри, а не
+        для тимчасових трендів.
+      </p>
+
+      <div class="hero-buttons">
+        <a class="btn-primary" href="http://localhost:4200/quiz/6a184c5b0c21d969ab384752">
+          Пройти опитування
+        </a>
+
+        <a class="btn-ghost" href="#categories">Переглянути товари</a>
+      </div>
+    </div>
+
+    <div class="hero-image">
+      <img
+        src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?q=80&w=1200&auto=format&fit=crop"
+        alt="Косметичні засоби Glowelle"
+      />
+    </div>
+  </div>
+</section>
+
+<section class="benefits">
+  <div class="container grid-3">
+    <div class="card">
+      <h3>Чисті формули</h3>
+      <p>Без агресивних компонентів, лише активи, дружні до шкіри.</p>
+    </div>
+
+    <div class="card">
+      <h3>Науковий підхід</h3>
+      <p>Формули створені на основі дерматологічних досліджень і тестування.</p>
+    </div>
+
+    <div class="card">
+      <h3>Персоналізований догляд</h3>
+      <p>Продукти підбираються під потреби вашої шкіри за логікою опитування.</p>
+    </div>
+  </div>
+</section>
+
+<section id="science" class="science">
+  <div class="container science-grid">
+    <div>
+      <img
+        src="https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?q=80&w=1200"
+        alt="Лабораторний догляд за шкірою"
+      />
+    </div>
+
+    <div>
+      <h2>Коли наука поєднується з доглядом</h2>
+
+      <p>
+        Кожен продукт містить клінічно досліджені інгредієнти, зокрема
+        гіалуронову кислоту, кераміди та ніацинамід.
+      </p>
+
+      <ul>
+        <li>Технологія відновлення захисного бар'єра</li>
+        <li>Формули, протестовані дерматологами</li>
+        <li>Некомедогенні текстури для щоденного догляду</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="categories">
+  <div class="container">
+    <h2>Популярні товари</h2>
+
+    <div class="grid-4">
+      @for (product of products; track product.title) {
+        <div class="product" [routerLink]="product.link" style="cursor: pointer;">
+          <img [src]="product.image" [alt]="product.title"/>
+
+          <h3>{{ product.title }}</h3>
+
+          <span>{{ product.description }}</span>
+
+          <strong>{{ product.price }}</strong>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="routine">
+  <div class="container routine-box">
+    <h2>Складіть власну рутину догляду</h2>
+
+    <p>
+      Очищення -> активний догляд -> зволоження -> захист.
+      Прості кроки для здорової шкіри.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="container grid-3">
+    <div class="card">
+      <p>"Моя шкіра ще ніколи не була такою збалансованою."</p>
+      <strong>— Анна</strong>
+    </div>
+
+    <div class="card">
+      <p>"Нарешті бренд, який справді розуміє мою шкіру."</p>
+      <strong>— Марія</strong>
+    </div>
+
+    <div class="card">
+      <p>"Опитування справді підібрало мені правильний продукт."</p>
+      <strong>— Катерина</strong>
+    </div>
+  </div>
+</section>
+
+<section id="quiz" class="quiz">
+  <div class="container quiz-box">
+    <h2>Не впевнені, що саме потрібно вашій шкірі?</h2>
+
+    <p>Пройдіть коротке опитування та отримайте персональну рекомендацію.</p>
+
+    <a class="btn-primary big" href="http://localhost:4200/quiz/6a184c5b0c21d969ab384752">
+      Почати опитування
+    </a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <div>
+      <h3>Glowelle</h3>
+      <p>Догляд за шкірою на основі науки та реальних потреб.</p>
+    </div>
+
+    <div>
+      <h4>Компанія</h4>
+      <div class="footer-navs">
+        <p>Про нас</p>
+        <p>Контакти</p>
+        <p>Вакансії</p>
+      </div>
+    </div>
+
+    <div>
+      <h4>Допомога</h4>
+      <div class="footer-navs">
+        <p>Доставка</p>
+        <p>Повернення</p>
+        <p>Питання та відповіді</p>
+      </div>
+    </div>
+  </div>
+</footer>

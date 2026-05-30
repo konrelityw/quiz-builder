@@ -1,1 +1,1 @@
-export type { Answer, Question, Quiz } from './Quiz.entity';
+export type {Answer, Question, Quiz} from './Quiz.entity';

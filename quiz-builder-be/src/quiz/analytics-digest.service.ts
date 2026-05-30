@@ -10,7 +10,6 @@ import { User, UserDocument } from '../user/user.schema';
 import { QuizService } from './quiz.service';
 
 const DIGEST_JOB_NAME = 'quizAnalyticsDigest';
-const MS_PER_HOUR = 3600000;
 const MS_PER_DAY = 86400000;
 
 @Injectable()
@@ -133,6 +132,10 @@ export class AnalyticsDigestService implements OnModuleInit {
     );
   }
 
+  private isSameUtcHour(a: Date, b: Date): boolean {
+    return this.isSameUtcCalendarDay(a, b) && a.getUTCHours() === b.getUTCHours();
+  }
+
   private shouldSendDigest(
     frequency: string | undefined,
     lastSent: Date | undefined,
@@ -147,7 +150,7 @@ export class AnalyticsDigestService implements OnModuleInit {
     }
     const elapsed = now.getTime() - lastSent.getTime();
     if (freq === 'hourly') {
-      return elapsed >= MS_PER_HOUR;
+      return !this.isSameUtcHour(lastSent, now);
     }
     if (freq === 'daily') {
       return !this.isSameUtcCalendarDay(lastSent, now);

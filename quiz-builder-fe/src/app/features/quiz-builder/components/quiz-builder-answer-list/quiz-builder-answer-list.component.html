@@ -1,9 +1,20 @@
 <div class="nested-card nested-card--inner quiz-builder-answer-list">
   @for (answer of answers(); track answer.displayId) {
-    <quiz-builder-answer-form
-      [questionDisplayId]="questionDisplayId()"
-      [answerDisplayId]="answer.displayId"
-    />
+    <div class="answer-row">
+      <div class="answer-row__form">
+        <quiz-builder-answer-form
+          [questionDisplayId]="questionDisplayId()"
+          [answerDisplayId]="answer.displayId"
+        />
+      </div>
+      <button
+        type="button"
+        class="btn-danger btn-sm answer-row__delete"
+        (click)="removeAnswer(answer.displayId)"
+      >
+        Delete answer
+      </button>
+    </div>
   }
-  <quiz-builder-add-answer-button [questionDisplayId]="questionDisplayId()" />
+  <quiz-builder-add-answer-button [questionDisplayId]="questionDisplayId()"/>
 </div>

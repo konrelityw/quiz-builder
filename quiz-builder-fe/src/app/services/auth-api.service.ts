@@ -1,6 +1,6 @@
-import { Injectable, inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { tap } from 'rxjs';
+import {Injectable, inject} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {tap} from 'rxjs';
 
 export type AuthResponse = {
   access_token: string;
@@ -19,7 +19,7 @@ export type LoginCredentials = {
   password: string;
 };
 
-@Injectable({ providedIn: 'root' })
+@Injectable({providedIn: 'root'})
 export class AuthApiService {
   private readonly http = inject(HttpClient);
   private readonly apiUrl = 'http://localhost:3000';
@@ -41,7 +41,7 @@ export class AuthApiService {
   }
 
   verifyEmail(token: string) {
-    return this.http.post<{ message: string }>(`${this.apiUrl}/auth/verify-email`, { token });
+    return this.http.post<{ message: string }>(`${this.apiUrl}/auth/verify-email`, {token});
   }
 
   resendVerification(email: string) {
@@ -51,7 +51,7 @@ export class AuthApiService {
   }
 
   forgotPassword(email: string) {
-    return this.http.post<{ message: string }>(`${this.apiUrl}/auth/forgot-password`, { email });
+    return this.http.post<{ message: string }>(`${this.apiUrl}/auth/forgot-password`, {email});
   }
 
   resetPassword(token: string, password: string) {
@@ -83,7 +83,7 @@ export class AuthApiService {
     return this.http.patch<{
       message: string;
       analyticsDigestFrequency: string;
-    }>(`${this.apiUrl}/auth/analytics-digest`, { frequency });
+    }>(`${this.apiUrl}/auth/analytics-digest`, {frequency});
   }
 
   getMe() {

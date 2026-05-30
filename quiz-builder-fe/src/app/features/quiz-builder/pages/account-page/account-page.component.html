@@ -54,7 +54,8 @@
             } @else {
               <form [formGroup]="emailForm" class="form-stack">
                 <label class="sr-only" for="new-email">New email</label>
-                <input id="new-email" type="email" autocomplete="email" formControlName="newEmail" placeholder="New email" />
+                <input id="new-email" type="email" autocomplete="email" formControlName="newEmail"
+                       placeholder="New email"/>
 
                 <label class="sr-only" for="email-pw">Current password</label>
                 <input
@@ -98,13 +99,16 @@
             } @else {
               <form [formGroup]="passwordForm" class="form-stack">
                 <label class="sr-only" for="current">Current password</label>
-                <input id="current" type="password" autocomplete="current-password" formControlName="currentPassword" placeholder="Current password" />
+                <input id="current" type="password" autocomplete="current-password" formControlName="currentPassword"
+                       placeholder="Current password"/>
 
                 <label class="sr-only" for="new">New password</label>
-                <input id="new" type="password" autocomplete="new-password" formControlName="newPassword" placeholder="New password" />
+                <input id="new" type="password" autocomplete="new-password" formControlName="newPassword"
+                       placeholder="New password"/>
 
                 <label class="sr-only" for="confirm">Confirm new password</label>
-                <input id="confirm" type="password" autocomplete="new-password" formControlName="confirmPassword" placeholder="Confirm new password" />
+                <input id="confirm" type="password" autocomplete="new-password" formControlName="confirmPassword"
+                       placeholder="Confirm new password"/>
 
                 <div class="form-actions">
                   <button type="button" (click)="changePassword()">Update password</button>
@@ -127,9 +131,8 @@
       </div>
 
       <p class="hint">
-        Choose how often QuizBuilder emails you a summary for all your quizzes. Your email must be verified. The
-        server job must run often enough for your choice (e.g. STATS_CRON hourly for hourly digests). Each digest
-        includes <strong>all-time</strong> totals and counts <strong>since your previous email</strong> (UTC).
+        Choose how often QuizBuilder emails you a summary for all your quizzes. Your email must be verified. Each digest
+        includes <strong>all-time</strong> totals and counts <strong>since your previous email</strong>.
       </p>
 
       <form [formGroup]="digestForm" class="form-stack digest-form">
@@ -138,7 +141,7 @@
           <select id="digest-frequency" formControlName="frequency">
             <option value="off">Off</option>
             <option value="hourly">Hourly</option>
-            <option value="daily">Daily (UTC)</option>
+            <option value="daily">Daily</option>
             <option value="weekly">Weekly</option>
             <option value="monthly">Monthly</option>
           </select>

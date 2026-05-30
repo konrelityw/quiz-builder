@@ -1,7 +1,7 @@
-import { Component, effect, inject, input } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { QuizStoreService } from '../../../../services/quiz-store.service';
-import { QuizBuilderAnswerListComponent } from '../quiz-builder-answer-list/quiz-builder-answer-list.component';
+import {Component, effect, inject, input} from '@angular/core';
+import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
+import {QuizStoreService} from '../../../../services/quiz-store.service';
+import {QuizBuilderAnswerListComponent} from '../quiz-builder-answer-list/quiz-builder-answer-list.component';
 
 @Component({
   selector: 'quiz-builder-question-form',
@@ -20,10 +20,10 @@ export class QuizBuilderQuestionForm {
       nonNullable: true,
       validators: [Validators.required, Validators.min(0)],
     }),
-    title: this.formBuilder.control('', { nonNullable: true, validators: [Validators.required] }),
+    title: this.formBuilder.control('', {nonNullable: true, validators: [Validators.required]}),
     subtitle: this.formBuilder.control(''),
-    type: this.formBuilder.control<'single' | 'multi'>('single', { nonNullable: true }),
-    affectsMatching: this.formBuilder.control(true, { nonNullable: true }),
+    type: this.formBuilder.control<'single' | 'multi'>('single', {nonNullable: true}),
+    affectsMatching: this.formBuilder.control(true, {nonNullable: true}),
   });
 
   constructor() {
@@ -39,7 +39,7 @@ export class QuizBuilderQuestionForm {
           type: question.type === 'multi' ? 'multi' : 'single',
           affectsMatching: question.affectsMatching !== false,
         },
-        { emitEvent: false },
+        {emitEvent: false},
       );
     });
 

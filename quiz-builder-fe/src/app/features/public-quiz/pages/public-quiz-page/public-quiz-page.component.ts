@@ -1,8 +1,8 @@
-import { ChangeDetectorRef, Component, inject } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { QuizApiService } from '../../../../services/quiz-api.service';
-import { Question, Quiz } from '../../../../shared/entities/Quiz.entity';
+import {ChangeDetectorRef, Component, inject} from '@angular/core';
+import {FormsModule} from '@angular/forms';
+import {ActivatedRoute} from '@angular/router';
+import {QuizApiService} from '../../../../services/quiz-api.service';
+import {Question, Quiz} from '../../../../shared/entities/Quiz.entity';
 
 @Component({
   selector: 'public-quiz-page',
@@ -80,14 +80,14 @@ export class PublicQuizPageComponent {
       }
       const next = [...set].sort((a, b) => a - b);
       if (next.length === 0) {
-        const updated = { ...this.selectedAnswers };
+        const updated = {...this.selectedAnswers};
         delete updated[qid];
         this.selectedAnswers = updated;
       } else {
-        this.selectedAnswers = { ...this.selectedAnswers, [qid]: next };
+        this.selectedAnswers = {...this.selectedAnswers, [qid]: next};
       }
     } else {
-      this.selectedAnswers = { ...this.selectedAnswers, [qid]: [answerDisplayId] };
+      this.selectedAnswers = {...this.selectedAnswers, [qid]: [answerDisplayId]};
     }
   }
 
@@ -119,7 +119,7 @@ export class PublicQuizPageComponent {
     return ((this.currentQuestionIndex + 1) / this.questionsCount) * 100;
   }
 
-  private isCurrentQuestionAnswered() {
+  protected isCurrentQuestionAnswered() {
     const question = this.currentQuestion;
     if (!question) {
       return false;
@@ -191,19 +191,18 @@ export class PublicQuizPageComponent {
     const selectedAnswers: { questionDisplayId: number; answerDisplayId: number }[] = [];
     for (const question of questions) {
       for (const answerDisplayId of this.selectedAnswers[question.displayId] ?? []) {
-        selectedAnswers.push({ questionDisplayId: question.displayId, answerDisplayId });
+        selectedAnswers.push({questionDisplayId: question.displayId, answerDisplayId});
       }
     }
 
     this.submitStatus = 'Preparing recommendation...';
     this.quizApiService.submitPublicQuiz(this.quiz._id, selectedAnswers).subscribe({
-      next: ({ resultUrl }) => {
+      next: ({resultUrl}) => {
         const targetUrl = this.normalizeResultUrl(resultUrl);
         if (!targetUrl) {
           this.submitStatus = 'No result configured for this answer set';
           return;
         }
-
         window.location.assign(targetUrl);
       },
       error: () => {

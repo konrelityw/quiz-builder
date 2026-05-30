@@ -1,6 +1,6 @@
-import { ChangeDetectorRef, Component, inject } from '@angular/core';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { AuthApiService } from '../../../../services/auth-api.service';
+import {ChangeDetectorRef, Component, inject} from '@angular/core';
+import {ActivatedRoute, Router, RouterLink} from '@angular/router';
+import {AuthApiService} from '../../../../services/auth-api.service';
 
 @Component({
   selector: 'app-verify-email-page',

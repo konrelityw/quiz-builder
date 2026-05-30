@@ -1,6 +1,6 @@
-import { Component, effect, inject, input } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { QuizStoreService } from '../../../../services/quiz-store.service';
+import {Component, effect, inject, input} from '@angular/core';
+import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
+import {QuizStoreService} from '../../../../services/quiz-store.service';
 
 @Component({
   selector: 'quiz-builder-answer-form',
@@ -16,7 +16,7 @@ export class QuizBuilderAnswerForm {
   private readonly formBuilder = inject(FormBuilder);
 
   answerForm = this.formBuilder.group({
-    title: this.formBuilder.control('', { nonNullable: true, validators: [Validators.required] }),
+    title: this.formBuilder.control('', {nonNullable: true, validators: [Validators.required]}),
     subtitle: this.formBuilder.control(''),
   });
 
@@ -30,7 +30,7 @@ export class QuizBuilderAnswerForm {
           title: answer.title,
           subtitle: answer.subtitle ?? '',
         },
-        { emitEvent: false },
+        {emitEvent: false},
       );
     });
 

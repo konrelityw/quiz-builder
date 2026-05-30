@@ -1,7 +1,7 @@
-import { Injectable, signal } from '@angular/core';
-import { Answer, Question, Quiz } from '../shared/entities/Quiz.entity';
+import {Injectable, signal} from '@angular/core';
+import {Answer, Question, Quiz} from '../shared/entities/Quiz.entity';
 
-@Injectable({ providedIn: 'root' })
+@Injectable({providedIn: 'root'})
 export class QuizStoreService {
   private readonly emptyQuiz: Quiz = {
     _id: '',
@@ -20,11 +20,11 @@ export class QuizStoreService {
   }
 
   resetQuiz() {
-    this.quiz.set({ ...this.emptyQuiz, questions: [] });
+    this.quiz.set({...this.emptyQuiz, questions: []});
   }
 
   updateQuizName(name: string) {
-    this.quiz.update((q) => ({ ...q, name }));
+    this.quiz.update((q) => ({...q, name}));
   }
 
   addQuestion(question: Omit<Question, 'displayId'>) {
@@ -51,7 +51,7 @@ export class QuizStoreService {
 
   moveQuestion(fromIndex: number, toIndex: number) {
     this.quiz.update((q) => {
-      const { questions } = q;
+      const {questions} = q;
       if (
         fromIndex < 0 ||
         toIndex < 0 ||
@@ -66,7 +66,7 @@ export class QuizStoreService {
       const [removed] = next.splice(fromIndex, 1);
       next.splice(toIndex, 0, removed);
 
-      return { ...q, questions: next };
+      return {...q, questions: next};
     });
   }
 
@@ -74,7 +74,7 @@ export class QuizStoreService {
     this.quiz.update((q) => ({
       ...q,
       questions: q.questions.map((question) =>
-        question.displayId === displayId ? { ...question, ...changes } : question,
+        question.displayId === displayId ? {...question, ...changes} : question,
       ),
     }));
   }
@@ -104,9 +104,9 @@ export class QuizStoreService {
       questions: q.questions.map((question) =>
         question.displayId === questionDisplayId
           ? {
-              ...question,
-              answers: [...question.answers, { ...answer, displayId: question.answers.length }],
-            }
+            ...question,
+            answers: [...question.answers, {...answer, displayId: question.answers.length}],
+          }
           : question,
       ),
     }));
@@ -118,11 +118,11 @@ export class QuizStoreService {
       questions: q.questions.map((question) =>
         question.displayId === questionDisplayId
           ? {
-              ...question,
-              answers: question.answers.map((answer) =>
-                answer.displayId === answerDisplayId ? { ...answer, ...changes } : answer,
-              ),
-            }
+            ...question,
+            answers: question.answers.map((answer) =>
+              answer.displayId === answerDisplayId ? {...answer, ...changes} : answer,
+            ),
+          }
           : question,
       ),
     }));
@@ -134,9 +134,9 @@ export class QuizStoreService {
       questions: q.questions.map((question) =>
         question.displayId === questionDisplayId
           ? {
-              ...question,
-              answers: question.answers.filter((a) => a.displayId !== answerDisplayId),
-            }
+            ...question,
+            answers: question.answers.filter((a) => a.displayId !== answerDisplayId),
+          }
           : question,
       ),
     }));

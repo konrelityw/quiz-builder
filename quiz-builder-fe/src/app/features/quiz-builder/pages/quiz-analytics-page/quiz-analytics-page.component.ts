@@ -1,7 +1,7 @@
-import { ChangeDetectorRef, Component, inject } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
-import { QuizApiService } from '../../../../services/quiz-api.service';
-import { QuizAnalytics, QuizAnswerStat } from '../../../../shared/entities/Quiz.entity';
+import {ChangeDetectorRef, Component, inject} from '@angular/core';
+import {ActivatedRoute, RouterLink} from '@angular/router';
+import {QuizApiService} from '../../../../services/quiz-api.service';
+import {QuizAnalytics, QuizAnswerStat} from '../../../../shared/entities/Quiz.entity';
 
 interface GroupedQuestionStats {
   questionDisplayId: number;

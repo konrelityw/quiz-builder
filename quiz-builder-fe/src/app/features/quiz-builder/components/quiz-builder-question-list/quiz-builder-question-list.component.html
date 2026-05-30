@@ -1,6 +1,6 @@
 <div class="nested-card quiz-builder-question-list">
   <p class="list-hint">
-    Use ↑ / ↓ to change the order visitors see in the public quiz. Save the quiz again afterward to rebuild the
+    Use Up / Down to change the order visitors see in the public quiz. Save the quiz again afterward to rebuild the
     combinations matrix and result links if needed.
   </p>
   @for (question of questions(); track question.displayId; let qIndex = $index) {
@@ -13,7 +13,7 @@
           [disabled]="qIndex === 0"
           title="Move up"
         >
-          ↑
+          Up
         </button>
         <button
           type="button"
@@ -22,13 +22,21 @@
           [disabled]="qIndex === questions().length - 1"
           title="Move down"
         >
-          ↓
+          Down
+        </button>
+        <button
+          type="button"
+          class="reorder-btn btn-danger"
+          (click)="removeQuestion(question.displayId)"
+          title="Delete question"
+        >
+          Delete
         </button>
       </div>
       <div class="question-row__form">
-        <quiz-builder-question-form [displayId]="question.displayId" />
+        <quiz-builder-question-form [displayId]="question.displayId"/>
       </div>
     </div>
   }
-  <quiz-builder-add-question-button />
+  <quiz-builder-add-question-button/>
 </div>

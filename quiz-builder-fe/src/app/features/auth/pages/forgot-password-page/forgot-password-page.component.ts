@@ -1,7 +1,7 @@
-import { Component, inject } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterLink } from '@angular/router';
-import { AuthApiService } from '../../../../services/auth-api.service';
+import {Component, inject} from '@angular/core';
+import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
+import {RouterLink} from '@angular/router';
+import {AuthApiService} from '../../../../services/auth-api.service';
 
 @Component({
   selector: 'app-forgot-password-page',

@@ -1,5 +1,5 @@
-import { Injectable, inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {Injectable, inject} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 import {
   Quiz,
   QuizAnalytics,
@@ -8,7 +8,7 @@ import {
   QuizSubmitResponse,
 } from '../shared/entities/Quiz.entity';
 
-@Injectable({ providedIn: 'root' })
+@Injectable({providedIn: 'root'})
 export class QuizApiService {
   private readonly http = inject(HttpClient);
   private readonly apiUrl = 'http://localhost:3000';

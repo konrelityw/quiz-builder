@@ -1,7 +1,7 @@
-import { Component, inject } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
-import { AuthApiService } from '../../../../services/auth-api.service';
+import {Component, inject} from '@angular/core';
+import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
+import {Router, RouterLink} from '@angular/router';
+import {AuthApiService} from '../../../../services/auth-api.service';
 
 @Component({
   selector: 'app-register-page',
@@ -40,11 +40,11 @@ export class RegisterPageComponent {
     this.errorMessage = '';
     this.requestStatus = 'Creating account...';
 
-    const { username, email, password: pwd } = this.form.getRawValue();
-    this.authApiService.register({ username, email, password: pwd }).subscribe({
+    const {username, email, password: pwd} = this.form.getRawValue();
+    this.authApiService.register({username, email, password: pwd}).subscribe({
       next: () => {
         void this.router.navigate(['/login'], {
-          queryParams: { registered: '1' },
+          queryParams: {registered: '1'},
         });
       },
       error: (err: { error?: { message?: string } }) => {

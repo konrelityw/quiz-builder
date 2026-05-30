@@ -1,7 +1,7 @@
-import { Component, inject } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { AuthApiService } from '../../../../services/auth-api.service';
+import {Component, inject} from '@angular/core';
+import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
+import {ActivatedRoute, Router, RouterLink} from '@angular/router';
+import {AuthApiService} from '../../../../services/auth-api.service';
 
 @Component({
   selector: 'app-login-page',
@@ -40,7 +40,7 @@ export class LoginPageComponent {
 
     this.errorMessage = '';
     this.requestStatus = 'Logging in...';
-    const { login, password } = this.form.getRawValue();
+    const {login, password} = this.form.getRawValue();
     this.authApiService
       .login({
         username: login.trim(),

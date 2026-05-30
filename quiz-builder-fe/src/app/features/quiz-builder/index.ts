@@ -1,1 +1,1 @@
-export { quizBuilderRoutes } from './quiz-builder.routes';
+export {quizBuilderRoutes} from './quiz-builder.routes';

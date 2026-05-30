@@ -1,5 +1,7 @@
-<div class="app-shell">
-  <nav class="top-nav" aria-label="Main navigation">
+<div class="app-shell"
+     [class.store-page]="isStore">
+  <nav class="top-nav" aria-label="Main navigation"
+       [class.hide-nav-bar]="isStore || (isPublicQuiz && !authApiService.isAuthenticated())">
     <a class="brand" routerLink="/quiz-builder">QuizBuilder</a>
 
     <div class="top-nav__end">
@@ -21,6 +23,6 @@
   </nav>
 
   <main class="page-container">
-    <router-outlet />
+    <router-outlet/>
   </main>
 </div>

@@ -20,9 +20,6 @@
               @if (question.subtitle) {
                 <p>{{ question.subtitle }}</p>
               }
-              @if (question.type === 'multi') {
-                <p class="multi-hint">Select all that apply</p>
-              }
             </div>
 
             <div class="answers">
@@ -46,9 +43,9 @@
           </button>
 
           @if (isLastQuestion) {
-            <button type="submit">Get recommendation</button>
+            <button type="submit" [disabled]="!isCurrentQuestionAnswered()">Get recommendation</button>
           } @else {
-            <button type="button" (click)="goToNextQuestion()">Next</button>
+            <button type="button" (click)="goToNextQuestion()" [disabled]="!isCurrentQuestionAnswered()">Next</button>
           }
         </div>
       </form>

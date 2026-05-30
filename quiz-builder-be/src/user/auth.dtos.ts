@@ -16,14 +16,6 @@ export class RegisterDto {
   password: string;
 }
 
-export class LoginDto {
-  @IsString()
-  username: string;
-
-  @IsString()
-  password: string;
-}
-
 export class VerifyEmailDto {
   @IsString()
   @MinLength(10)
